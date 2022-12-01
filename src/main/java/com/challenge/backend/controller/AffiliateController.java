@@ -32,7 +32,7 @@ public class AffiliateController {
      * * ResponseEntity es un objeto que me va a permitir generar una respuesta http
      * * a la peticion que yo le haga desde una aplicación con posmant
      * * y el signo de ? se le indica que es una respuesta dinamica como tal puede llegarle cualquier cosa
-     * <p>
+     *
      * Metodo que permite consultar un listado de affiliates
      *
      * @return Objeto Response en formato JSON
