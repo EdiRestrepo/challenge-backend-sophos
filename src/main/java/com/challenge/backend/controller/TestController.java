@@ -76,9 +76,9 @@ public class TestController {
     public ResponseEntity<?> post(@RequestBody Test test) {
         try {
             Test testSave = this.testService.post(test);
-            return new ResponseEntity<>(null, HttpStatus.CREATED);
+            return new ResponseEntity<>("Created", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -92,7 +92,16 @@ public class TestController {
      */
     @PutMapping("tests")
     public ResponseEntity<?> put(@RequestBody Test test) {
-        return post(test);
+        try{
+            Optional<Test> testUpdated = testService.put(test);
+            if (testUpdated.isPresent()) {
+                return new ResponseEntity<>("Updated", HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
+        }catch(Exception exception){
+            System.out.println("an exception has occurred !!!\n" + "<" + exception.getMessage() + ">");
+            return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
+        }
     }
 
 

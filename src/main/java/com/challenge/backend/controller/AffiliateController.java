@@ -96,7 +96,16 @@ public class AffiliateController {
      */
     @PutMapping("affiliates")
     public ResponseEntity<?> put(@RequestBody Affiliate affiliate) {
-        return post(affiliate);
+        try{
+            Optional<Affiliate> affiliateUpdated = affiliateService.put(affiliate);
+            if (affiliateUpdated.isPresent()) {
+                return new ResponseEntity<>("Updated", HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
+        }catch(Exception exception){
+            System.out.println("an exception has occurred !!!\n" + "<" + exception.getMessage() + ">");
+            return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
+        }
     }
 
 

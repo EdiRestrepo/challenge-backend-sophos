@@ -52,7 +52,7 @@ public interface IAffiliate {
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
-    public Affiliate put(Affiliate affiliate);
+    public Optional<Affiliate> put(Affiliate affiliate);
 
     /**
      * Metodo que permite eliminar un affiliate por id

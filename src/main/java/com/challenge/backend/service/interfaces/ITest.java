@@ -52,7 +52,7 @@ public interface ITest {
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
-    public Test put(Test test);
+    public Optional<Test> put(Test test);
 
     /**
      * Metodo que permite eliminar un test por id

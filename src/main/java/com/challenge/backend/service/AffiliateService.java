@@ -13,8 +13,8 @@ import java.util.Optional;
 /**
  * Clase que implementa los metodos de logica de negocio de la interface de IAffiliate
  *
- * @version 1.0.0 2022-11-29
  * @author Edison Restrepo - edisonestival@gmail.com
+ * @version 1.0.0 2022-11-29
  * @since 1.0.0
  */
 
@@ -31,9 +31,8 @@ public class AffiliateService implements IAffiliate {
      * Metodo que permite consultar un listado de affiliates
      *
      * @return listado de affiliates
-     *
-     *  @author Edison Restrepo - edisonestival@gmail.com
-     *  @since 1.0.0
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
      */
     @Override
     public List<Affiliate> getList() {
@@ -45,7 +44,6 @@ public class AffiliateService implements IAffiliate {
      *
      * @param id
      * @return un affiliate por id
-     *
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
@@ -77,8 +75,23 @@ public class AffiliateService implements IAffiliate {
      * @since 1.0.0
      */
     @Override
-    public Affiliate put(Affiliate affiliate) {
-        return this.affiliateRepository.save(affiliate);
+    public Optional<Affiliate> put(Affiliate affiliate) {
+        Optional<Affiliate> optionalAffiliate = affiliateRepository.findById(affiliate.getId());
+
+        if (optionalAffiliate.isPresent()) {
+            Affiliate updatedAffiliate = optionalAffiliate.get();
+
+            updatedAffiliate.setName(affiliate.getName());
+            updatedAffiliate.setAge(affiliate.getAge());
+            updatedAffiliate.setMail(affiliate.getMail());
+
+            affiliateRepository.save(updatedAffiliate);
+
+            return Optional.ofNullable(updatedAffiliate);
+        } else {
+            return Optional.empty();
+        }
+
     }
 
     /**

@@ -1,7 +1,9 @@
 package com.challenge.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.JoinColumn;
@@ -27,6 +29,8 @@ import java.time.LocalTime;
 @Data
 @Entity
 @Table(name = "appointments")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Appointment implements Serializable {
 
     /**
@@ -47,7 +51,7 @@ public class Appointment implements Serializable {
      */
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonFormat(pattern = "dd/MM/yyyy")
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     private LocalDate date;
 
     /**
@@ -55,20 +59,20 @@ public class Appointment implements Serializable {
      */
     @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm")
-    @Column(name = "hour")
+    @Column(name = "hour", nullable = false)
     private LocalTime hour;
 
     /**
      * id del test
      */
     @ManyToOne
-    @JoinColumn(name = "id_test")
+    @JoinColumn(name = "id_test", nullable = false)
     private Test idTest;
 
     /**
      * id del affiliate
      */
     @ManyToOne
-    @JoinColumn(name = "id_affiliate")
+    @JoinColumn(name = "id_affiliate", nullable = false)
     private Affiliate idAffiliate;
 }

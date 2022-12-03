@@ -12,8 +12,8 @@ import java.util.Optional;
 /**
  * Clase que implementa los metodos de logica de negocio de la interface de ITest
  *
- * @version 1.0.0 2022-12-01
  * @author Edison Restrepo - edisonestival@gmail.com
+ * @version 1.0.0 2022-12-01
  * @since 1.0.0
  */
 
@@ -30,7 +30,6 @@ public class TestService implements ITest {
      * Metodo que permite consultar un listado de tests
      *
      * @return listado de tests
-     *
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
@@ -44,7 +43,6 @@ public class TestService implements ITest {
      *
      * @param id
      * @return un test por id
-     *
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
@@ -64,6 +62,7 @@ public class TestService implements ITest {
      */
     @Override
     public Test post(Test test) {
+
         return this.testRepository.save(test);
     }
 
@@ -76,8 +75,21 @@ public class TestService implements ITest {
      * @since 1.0.0
      */
     @Override
-    public Test put(Test test) {
-        return this.testRepository.save(test);
+    public Optional<Test> put(Test test) {
+        Optional<Test> optionalTest = testRepository.findById(test.getId());
+
+        if (optionalTest.isPresent()) {
+            Test updatedTest = optionalTest.get();
+
+            updatedTest.setName(test.getName());
+            updatedTest.setDescription(test.getDescription());
+
+            testRepository.save(updatedTest);
+
+            return Optional.ofNullable(updatedTest);
+        } else {
+            return Optional.empty();
+        }
     }
 
     /**
