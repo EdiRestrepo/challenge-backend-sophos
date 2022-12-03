@@ -12,6 +12,10 @@ import org.hibernate.query.internal.AbstractProducedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -140,5 +144,36 @@ public class AppointmentService implements IAppointment {
     @Override
     public void deleteById(Integer id) {
         this.appointmentRepository.deleteById(id);
+    }
+
+    /**
+     * Metodo que permite obtener todos las appointments de una fecha, agrupadas por affiliate
+     *
+     * @param date
+     * @return lista de appointments
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
+     */
+    @Override
+    public Collection<Appointment> getByDate(LocalDate date) {
+        Appointment appointment = new Appointment();
+        appointment.setDate(date);
+        return this.appointmentRepository.findByDateOrderByIdAffiliateAsc(date);
+    }
+
+    /**
+     * Metodo que permite obtener todos las appointments de un affiliate
+     *
+     * @param idAffiliate
+     * @return lista de appointments
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
+     */
+    @Override
+    public List<Appointment> getByAffiliate(Integer idAffiliate) {
+        Affiliate affiliate = new Affiliate();
+        affiliate.setId(idAffiliate);
+        return appointmentRepository.findByIdAffiliateOrderByDateAsc(affiliate);
+
     }
 }

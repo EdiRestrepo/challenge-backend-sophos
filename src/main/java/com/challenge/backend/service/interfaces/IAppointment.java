@@ -4,8 +4,11 @@ package com.challenge.backend.service.interfaces;
 
 
 
+import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.entity.Appointment;
 
+import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,4 +69,25 @@ public interface IAppointment {
      * @since 1.0.0
      */
     public void deleteById(Integer id);
+
+    /**
+     * Metodo que permite obtener todos las appointments de una fecha, agrupadas por affiliate
+     *
+     * @param date
+     * @return lista de appointments
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
+     */
+    public Collection<Appointment> getByDate(LocalDate date);
+
+    /**
+     * Metodo que permite obtener todos las appointments de un affiliate
+     *
+     * @param id
+     * @return lista de appointments
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
+     */
+    public List<Appointment> getByAffiliate(Integer id);
+
 }

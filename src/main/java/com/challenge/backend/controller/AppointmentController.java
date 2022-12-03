@@ -1,13 +1,21 @@
 package com.challenge.backend.controller;
 
 
+import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.entity.Appointment;
 import com.challenge.backend.service.interfaces.IAppointment;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.boot.jaxb.internal.stax.LocalXmlResourceResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +36,10 @@ public class AppointmentController {
      */
     @Autowired
     private IAppointment appointmentService;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dateFormat;
 
     /**
      * Metodo que permite consultar un listado de appointments
@@ -116,5 +128,54 @@ public class AppointmentController {
             return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    /**
+     * Metodo que permite obtener todos las appointments de una fecha, agrupadas por affiliate
+     *
+     * @param day
+     * @return lista de appointments
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
+     */
+    @GetMapping("appointments/date/{day}/{month}/{year}")
+    public ResponseEntity<?> getByDate(@PathVariable int day, @PathVariable int month, @PathVariable int year) {
+
+        try{
+            LocalDate date = LocalDate.of(year, month, day);
+
+            Collection<Appointment> appointmentList = this.appointmentService.getByDate(date);
+            if(appointmentList.isEmpty()){
+                return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
+            }else {
+                return new ResponseEntity<>(appointmentList, HttpStatus.OK);
+            }
+            }catch(Exception exception){
+                return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
+            }
+        }
+
+
+    /**
+     * Metodo que permite obtener todos las appointments de un affiliate
+     *
+     * @param id
+     * @return lista de appointments
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
+     */
+    @GetMapping("appointments/getbyaffiliates/{id}")
+    public ResponseEntity<?> getByAffiliates(@PathVariable Integer id) {
+
+        try{
+            List<Appointment> appointments = appointmentService.getByAffiliate(id);
+            if(appointments.isEmpty()){
+                return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
+            }else{
+                return new ResponseEntity<>(appointments, HttpStatus.OK);
+            }
+        }catch(Exception exception){
+            return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
+        }
     }
 }
