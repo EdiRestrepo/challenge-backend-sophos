@@ -80,9 +80,9 @@ public class AffiliateController {
     public ResponseEntity<?> post(@RequestBody Affiliate affiliate) {
         try {
             Affiliate affiliateSave = this.affiliateService.post(affiliate);
-            return new ResponseEntity<>(null, HttpStatus.CREATED);
+            return new ResponseEntity<>(affiliateSave, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -103,7 +103,6 @@ public class AffiliateController {
             }
             return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         }catch(Exception exception){
-            System.out.println("an exception has occurred !!!\n" + "<" + exception.getMessage() + ">");
             return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         }
     }
@@ -121,8 +120,8 @@ public class AffiliateController {
         try {
             this.affiliateService.deleteById(id);
         } catch (Exception exception) {
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>("Ok", HttpStatus.OK);
     }
 }
