@@ -1,6 +1,6 @@
 package com.challenge.backend.repository;
 
-import com.challenge.backend.entity.Test;
+import com.challenge.backend.entity.Tests;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @since 1.0.0
  */
 @Repository
-public interface TestRepository extends CrudRepository<Test, Integer> {
+public interface TestRepository extends CrudRepository<Tests, Integer> {
 }

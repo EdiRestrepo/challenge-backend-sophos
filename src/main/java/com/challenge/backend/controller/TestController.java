@@ -1,6 +1,6 @@
 package com.challenge.backend.controller;
 
-import com.challenge.backend.entity.Test;
+import com.challenge.backend.entity.Tests;
 import com.challenge.backend.service.interfaces.ITest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +38,7 @@ public class TestController {
     @GetMapping("tests")
     public ResponseEntity<?> getList() {
 
-        List<Test> testList = this.testService.getList();
+        List<Tests> testList = this.testService.getList();
         if (testList.isEmpty()) {
             return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
         } else {
@@ -56,7 +56,7 @@ public class TestController {
      */
     @GetMapping("tests/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
-        Optional<Test> test = this.testService.getById(id);
+        Optional<Tests> test = this.testService.getById(id);
         if (test.isEmpty()) {
             return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         } else {
@@ -73,10 +73,10 @@ public class TestController {
      * @since 1.0.0
      */
     @PostMapping("tests")
-    public ResponseEntity<?> post(@RequestBody Test test) {
+    public ResponseEntity<?> post(@RequestBody Tests test) {
         try {
-            Test testSave = this.testService.post(test);
-            return new ResponseEntity<>("Created", HttpStatus.CREATED);
+            Tests testSave = this.testService.post(test);
+            return new ResponseEntity<>(testSave, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         }
@@ -91,9 +91,9 @@ public class TestController {
      * @since 1.0.0
      */
     @PutMapping("tests")
-    public ResponseEntity<?> put(@RequestBody Test test) {
+    public ResponseEntity<?> put(@RequestBody Tests test) {
         try{
-            Optional<Test> testUpdated = testService.put(test);
+            Optional<Tests> testUpdated = testService.put(test);
             if (testUpdated.isPresent()) {
                 return new ResponseEntity<>("Updated", HttpStatus.CREATED);
             }
@@ -117,8 +117,8 @@ public class TestController {
         try {
             this.testService.deleteById(id);
         } catch (Exception exception) {
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>("Ok", HttpStatus.OK);
     }
 }

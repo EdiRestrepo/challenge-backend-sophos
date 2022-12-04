@@ -1,6 +1,6 @@
 package com.challenge.backend.service;
 
-import com.challenge.backend.entity.Test;
+import com.challenge.backend.entity.Tests;
 import com.challenge.backend.repository.TestRepository;
 import com.challenge.backend.service.interfaces.ITest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +34,8 @@ public class TestService implements ITest {
      * @since 1.0.0
      */
     @Override
-    public List<Test> getList() {
-        return (List<Test>) testRepository.findAll();
+    public List<Tests> getList() {
+        return (List<Tests>) testRepository.findAll();
     }
 
     /**
@@ -47,8 +47,8 @@ public class TestService implements ITest {
      * @since 1.0.0
      */
     @Override
-    public Optional<Test> getById(Integer id) {
-        Optional<Test> test = this.testRepository.findById(id);
+    public Optional<Tests> getById(Integer id) {
+        Optional<Tests> test = this.testRepository.findById(id);
         return test;
     }
 
@@ -61,7 +61,7 @@ public class TestService implements ITest {
      * @since 1.0.0
      */
     @Override
-    public Test post(Test test) {
+    public Tests post(Tests test) {
 
         return this.testRepository.save(test);
     }
@@ -75,11 +75,11 @@ public class TestService implements ITest {
      * @since 1.0.0
      */
     @Override
-    public Optional<Test> put(Test test) {
-        Optional<Test> optionalTest = testRepository.findById(test.getId());
+    public Optional<Tests> put(Tests test) {
+        Optional<Tests> optionalTest = testRepository.findById(test.getId());
 
         if (optionalTest.isPresent()) {
-            Test updatedTest = optionalTest.get();
+            Tests updatedTest = optionalTest.get();
 
             updatedTest.setName(test.getName());
             updatedTest.setDescription(test.getDescription());

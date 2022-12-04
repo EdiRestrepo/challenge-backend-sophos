@@ -3,18 +3,15 @@ package com.challenge.backend.service;
 
 import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.entity.Appointment;
-import com.challenge.backend.entity.Test;
+import com.challenge.backend.entity.Tests;
 import com.challenge.backend.repository.AffiliateRepository;
 import com.challenge.backend.repository.AppointmentRepository;
 import com.challenge.backend.repository.TestRepository;
 import com.challenge.backend.service.interfaces.IAppointment;
-import org.hibernate.query.internal.AbstractProducedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -87,7 +84,7 @@ public class AppointmentService implements IAppointment {
     @Override
     public Appointment post(Appointment appointment) {
         Optional<Affiliate> affiliate = affiliateRepository.findById(appointment.getIdAffiliate().getId());
-        Optional<Test> test = testRepository.findById(appointment.getIdTest().getId());
+        Optional<Tests> test = testRepository.findById(appointment.getIdTest().getId());
 
         if(affiliate.isPresent() && test.isPresent()) {
             try{
@@ -111,7 +108,7 @@ public class AppointmentService implements IAppointment {
     @Override
     public Optional<Appointment> put(Appointment appointment) {
         Optional<Affiliate> affiliate = affiliateRepository.findById(appointment.getIdAffiliate().getId());
-        Optional<Test> test = testRepository.findById(appointment.getIdTest().getId());
+        Optional<Tests> test = testRepository.findById(appointment.getIdTest().getId());
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointment.getId());
 
         if(affiliate.isPresent() && test.isPresent() && optionalAppointment.isPresent()) {

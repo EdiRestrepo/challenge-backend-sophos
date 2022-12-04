@@ -25,7 +25,7 @@ import java.io.Serializable;
 @Table(name = "tests")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Test implements Serializable {
+public class Tests implements Serializable {
 
     /**
      * Variable usada para manejar el tema del identificador de la tupla (consecutivo)

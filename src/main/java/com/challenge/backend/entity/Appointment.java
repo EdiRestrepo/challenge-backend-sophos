@@ -67,7 +67,7 @@ public class Appointment implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "id_test", nullable = false)
-    private Test idTest;
+    private Tests idTest;
 
     /**
      * id del affiliate

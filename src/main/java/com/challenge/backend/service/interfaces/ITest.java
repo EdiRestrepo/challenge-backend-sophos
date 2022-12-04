@@ -1,6 +1,6 @@
 package com.challenge.backend.service.interfaces;
 
-import com.challenge.backend.entity.Test;
+import com.challenge.backend.entity.Tests;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +22,7 @@ public interface ITest {
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
-    public List<Test> getList();
+    public List<Tests> getList();
 
     /**
      * Metodo que permite consultar un test por id
@@ -32,7 +32,7 @@ public interface ITest {
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
-    public Optional<Test> getById(Integer id);
+    public Optional<Tests> getById(Integer id);
 
     /**
      * Metodo que permite crear un test
@@ -42,7 +42,7 @@ public interface ITest {
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
-    public Test post(Test test);
+    public Tests post(Tests test);
 
     /**
      * Metodo que permite actualizar datos de un test
@@ -52,7 +52,7 @@ public interface ITest {
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
-    public Optional<Test> put(Test test);
+    public Optional<Tests> put(Tests test);
 
     /**
      * Metodo que permite eliminar un test por id

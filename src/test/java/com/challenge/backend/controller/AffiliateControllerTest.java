@@ -50,14 +50,14 @@ class AffiliateControllerTest {
     /**
      * Testear una lista de affiliates
      */
-    @Test
-    void getListAffiliate() {
-        List<Affiliate> affiliateListMock = new ArrayList<>();
-        affiliateListMock.add(new Affiliate());
-        when(affiliateServiceMock.getList()).thenReturn(affiliateListMock);
-        var response = affiliateController.getList();
-        Assertions.assertEquals(200, response.getStatusCodeValue());
-    }
+        @Test
+        void getListAffiliate() {
+            List<Affiliate> affiliateListMock = new ArrayList<>();
+            affiliateListMock.add(new Affiliate());
+            when(affiliateServiceMock.getList()).thenReturn(affiliateListMock);
+            var response = affiliateController.getList();
+            Assertions.assertEquals(200, response.getStatusCodeValue());
+        }
 
     /**
      * Testear una id vacio de affiliates
@@ -102,7 +102,9 @@ class AffiliateControllerTest {
         Assertions.assertEquals(201, response.getStatusCodeValue());
     }
 
-
+    /**
+     * Testea una excepcion al actualizar un affiliate
+     */
     @Test
     void putAffiliateException() {
         Affiliate affiliateMock = new Affiliate();

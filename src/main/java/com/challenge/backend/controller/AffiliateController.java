@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/controller")
-public class AffiliateController {
+public class    AffiliateController {
 
     /**
      * Servicio para el manejo de affiliates
