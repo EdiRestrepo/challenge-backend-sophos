@@ -109,7 +109,8 @@
 
 ## **Edison Estival Restrepo Ospina** 🐯💻👌⚡
 
-[edisonestival@gmail.com]()
-[https://www.linkedin.com/in/edisonestivalrestrepoospina/](https://www.linkedin.com/in/edisonestivalrestrepoospina/ "Linkedin")
+### Email : [edisonestival@gmail.com]()
+
+### LinkedIn: [https://www.linkedin.com/in/edisonestivalrestrepoospina/](https://www.linkedin.com/in/edisonestivalrestrepoospina/ "Linkedin")
 
 
