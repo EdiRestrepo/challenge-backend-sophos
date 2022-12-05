@@ -2,14 +2,12 @@ package com.challenge.backend.repository;
 
 import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.entity.Appointment;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Interface que contiene el CRUD con Spring JPA para la tabla de appointments.

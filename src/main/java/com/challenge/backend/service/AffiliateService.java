@@ -1,6 +1,5 @@
 package com.challenge.backend.service;
 
-
 import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.repository.AffiliateRepository;
 import com.challenge.backend.service.interfaces.IAffiliate;

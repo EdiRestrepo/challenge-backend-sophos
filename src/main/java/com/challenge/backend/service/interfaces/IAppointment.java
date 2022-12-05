@@ -1,10 +1,5 @@
 package com.challenge.backend.service.interfaces;
 
-
-
-
-
-import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.entity.Appointment;
 
 import java.time.LocalDate;

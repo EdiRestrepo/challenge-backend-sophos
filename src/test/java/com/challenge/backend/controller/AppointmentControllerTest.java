@@ -8,18 +8,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 /**
- * ExtendWith ecesario para inyectar el Mock a la dependencia que queremos Testear
+ * ExtendWith necesario para inyectar el Mock a la dependencia que queremos Testear
  */
 @ExtendWith(MockitoExtension.class)
 class AppointmentControllerTest {
@@ -182,17 +183,16 @@ class AppointmentControllerTest {
 
     }
 
-
     /**
      * Testea un appointment por fecha
      */
     @Test
-    void getByDate(){
+    void getByDate() {
         Random random = new Random();
-        int month = random.nextInt(12)+1;
-        int day = random.nextInt(30)+1;
-        int year = random.nextInt(20)+2000;
-        LocalDate dateMock = LocalDate.of(year,month,day);
+        int month = random.nextInt(12) + 1;
+        int day = random.nextInt(30) + 1;
+        int year = random.nextInt(20) + 2000;
+        LocalDate dateMock = LocalDate.of(year, month, day);
         List<Appointment> appointmentListMock = new ArrayList<>();
         appointmentListMock.add(new Appointment());
         when(appointmentServiceMock.getByDate(dateMock)).thenReturn(appointmentListMock);
@@ -203,14 +203,13 @@ class AppointmentControllerTest {
     /**
      * Testea un appointment por una fecha null
      */
-
     @Test
-    void getByDateEmpty(){
+    void getByDateEmpty() {
         Random random = new Random();
-        int month = random.nextInt(12)+1;
-        int day = random.nextInt(30)+1;
-        int year = random.nextInt(20)+2000;
-        LocalDate dateMock = LocalDate.of(year,month,day);
+        int month = random.nextInt(12) + 1;
+        int day = random.nextInt(30) + 1;
+        int year = random.nextInt(20) + 2000;
+        LocalDate dateMock = LocalDate.of(year, month, day);
         when(appointmentServiceMock.getByDate(dateMock)).thenReturn(Collections.emptyList());
         var response = appointmentController.getByDate(day, month, year);
         Assertions.assertEquals(204, response.getStatusCodeValue());
@@ -219,14 +218,13 @@ class AppointmentControllerTest {
     /**
      * Testea una exception al buscar un appointment por fecha
      */
-
     @Test
-    void getByDateExeption(){
+    void getByDateExeption() {
         Random random = new Random();
-        int month = random.nextInt(12)+1;
-        int day = random.nextInt(30)+1;
-        int year = random.nextInt(20)+2000;
-        LocalDate dateMock = LocalDate.of(year,month,day);
+        int month = random.nextInt(12) + 1;
+        int day = random.nextInt(30) + 1;
+        int year = random.nextInt(20) + 2000;
+        LocalDate dateMock = LocalDate.of(year, month, day);
         doThrow(new RuntimeException()).when(appointmentServiceMock).getByDate(dateMock);
         var response = appointmentController.getByDate(day, month, year);
         Assertions.assertEquals(204, response.getStatusCodeValue());

@@ -1,6 +1,5 @@
 package com.challenge.backend.service;
 
-
 import com.challenge.backend.entity.Affiliate;
 import com.challenge.backend.entity.Appointment;
 import com.challenge.backend.entity.Tests;
@@ -19,8 +18,8 @@ import java.util.Optional;
 /**
  * Clase que implementa los metodos de logica de negocio de la interface de IAppointment
  *
- * @version 1.0.0 2022-12-02
  * @author Edison Restrepo - edisonestival@gmail.com
+ * @version 1.0.0 2022-12-02
  * @since 1.0.0
  */
 
@@ -49,9 +48,8 @@ public class AppointmentService implements IAppointment {
      * Metodo que permite consultar un listado de appointments
      *
      * @return listado de appointments
-     *
-     *  @author Edison Restrepo - edisonestival@gmail.com
-     *  @since 1.0.0
+     * @author Edison Restrepo - edisonestival@gmail.com
+     * @since 1.0.0
      */
     @Override
     public List<Appointment> getList() {
@@ -63,7 +61,6 @@ public class AppointmentService implements IAppointment {
      *
      * @param id
      * @return un appointment por id
-     *
      * @author Edison Restrepo - edisonestival@gmail.com
      * @since 1.0.0
      */
@@ -86,13 +83,13 @@ public class AppointmentService implements IAppointment {
         Optional<Affiliate> affiliate = affiliateRepository.findById(appointment.getIdAffiliate().getId());
         Optional<Tests> test = testRepository.findById(appointment.getIdTest().getId());
 
-        if(affiliate.isPresent() && test.isPresent()) {
-            try{
+        if (affiliate.isPresent() && test.isPresent()) {
+            try {
                 return appointmentRepository.save(appointment);
             } catch (Exception exception) {
                 return null;
             }
-        }else {
+        } else {
             return null;
         }
     }
@@ -111,8 +108,8 @@ public class AppointmentService implements IAppointment {
         Optional<Tests> test = testRepository.findById(appointment.getIdTest().getId());
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointment.getId());
 
-        if(affiliate.isPresent() && test.isPresent() && optionalAppointment.isPresent()) {
-            try{
+        if (affiliate.isPresent() && test.isPresent() && optionalAppointment.isPresent()) {
+            try {
                 Appointment updatedAppointment = optionalAppointment.get();
 
                 updatedAppointment.setIdAffiliate(affiliate.get());
@@ -126,7 +123,7 @@ public class AppointmentService implements IAppointment {
             } catch (Exception exception) {
                 return Optional.empty();
             }
-        }else {
+        } else {
             return Optional.empty();
         }
     }

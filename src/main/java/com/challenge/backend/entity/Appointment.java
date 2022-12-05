@@ -1,19 +1,22 @@
 package com.challenge.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -25,7 +28,6 @@ import java.time.LocalTime;
  * @version 1.0.0 2022-12-01
  * @since 1.0.0
  */
-
 @Data
 @Entity
 @Table(name = "appointments")
@@ -65,14 +67,16 @@ public class Appointment implements Serializable {
     /**
      * id del test
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_test", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Tests idTest;
 
     /**
      * id del affiliate
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_affiliate", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Affiliate idAffiliate;
 }

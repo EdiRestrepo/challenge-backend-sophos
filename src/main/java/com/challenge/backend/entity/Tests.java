@@ -19,7 +19,6 @@ import java.io.Serializable;
  * @version 1.0.0 2022-12-01
  * @since 1.0.0
  */
-
 @Data
 @Entity
 @Table(name = "tests")

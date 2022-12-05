@@ -37,7 +37,6 @@ public class AppointmentController {
     @Autowired
     private IAppointment appointmentService;
 
-
     /**
      * Metodo que permite consultar un listado de appointments
      *
@@ -109,7 +108,6 @@ public class AppointmentController {
         }
     }
 
-
     /**
      * Metodo que permite eliminar un appoinment por id
      *
@@ -151,7 +149,6 @@ public class AppointmentController {
                 return new ResponseEntity<>("No content", HttpStatus.NO_CONTENT);
             }
         }
-
 
     /**
      * Metodo que permite obtener todos las appointments de un affiliate

@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/controller")
-public class    AffiliateController {
+public class AffiliateController {
 
     /**
      * Servicio para el manejo de affiliates
@@ -32,7 +32,7 @@ public class    AffiliateController {
      * * ResponseEntity es un objeto que me va a permitir generar una respuesta http
      * * a la peticion que yo le haga desde una aplicación con posmant
      * * y el signo de ? se le indica que es una respuesta dinamica como tal puede llegarle cualquier cosa
-     *
+     * <p>
      * Metodo que permite consultar un listado de affiliates
      *
      * @return Objeto Response en formato JSON
@@ -96,17 +96,16 @@ public class    AffiliateController {
      */
     @PutMapping("affiliates")
     public ResponseEntity<?> put(@RequestBody Affiliate affiliate) {
-        try{
+        try {
             Optional<Affiliate> affiliateUpdated = affiliateService.put(affiliate);
             if (affiliateUpdated.isPresent()) {
                 return new ResponseEntity<>("Updated", HttpStatus.CREATED);
             }
             return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
-        }catch(Exception exception){
+        } catch (Exception exception) {
             return new ResponseEntity<>("No found", HttpStatus.NOT_FOUND);
         }
     }
-
 
     /**
      * Metodo que permite eliminar un affiliate por id
